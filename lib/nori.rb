@@ -1,6 +1,7 @@
 require "nori/version"
 require "nori/core_ext"
 require "nori/xml_utility_node"
+require "nori/hash_from_xml"
 
 class Nori
 
@@ -11,7 +12,7 @@ class Nori
     name
   end
 
-  PARSERS = { :rexml => "REXML", :nokogiri => "Nokogiri" }
+  PARSERS = { :rexml => "REXML", :nokogiri => "Nokogiri", :nokogiri2 => "Nokogiri2" }
 
   def initialize(options = {})
     defaults = {
@@ -20,9 +21,9 @@ class Nori
       :convert_tags_to               => nil,
       :convert_attributes_to         => nil,
       :empty_tag_value               => nil,
-      :advanced_typecasting          => true,
-      :convert_dashes_to_underscores => true,
-      :parser                        => :nokogiri
+      :advanced_typecasting          => false,
+      :convert_dashes_to_underscores => false,
+      :parser                        => :nokogiri2
     }
 
     validate_options! defaults.keys, options.keys
